@@ -95,6 +95,7 @@ class grafana (
   contain grafana::install
   contain grafana::config
   contain grafana::service
+  contain grafana::post_install
 
   Class['grafana::install']
   -> Class['grafana::config']
@@ -102,6 +103,9 @@ class grafana (
 
   create_resources(grafana_plugin, $plugins)
 
-  Grafana_Plugin <| |> ~> Class['grafana::service']
+  Class['grafana::install']
+  -> Class['grafana::post_install']
+  -> Grafana_Plugin <| |>
+  ~> Class['grafana::service']
 
 }
