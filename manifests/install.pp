@@ -74,12 +74,12 @@ class grafana::install {
               class { '::apt': }
             }
             apt::source { 'grafana':
-              location => "https://packagecloud.io/grafana/${::grafana::repo_name}/debian",
-              release  => 'jessie',
+              location => "https://packages.grafana.com/oss/deb",
+              release  => 'stable',
               repos    => 'main',
               key      =>  {
-                'id'     => '418A7F2FB0E1E6E7EABF6FE8C2E73424D59097AB',
-                'source' => 'https://packagecloud.io/gpg.key',
+                'id'     => '4E40DDF6D76E284A4A6780E48C8C34C524098CB6',
+                'source' => 'https://packages.grafana.com/gpg.key',
               },
               before   => Package[$::grafana::package_name],
             }
